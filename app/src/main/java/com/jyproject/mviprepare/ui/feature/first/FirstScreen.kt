@@ -1,6 +1,8 @@
 package com.jyproject.mviprepare.ui.feature.first
 
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +30,18 @@ fun FirstScreen(
         }
     }
 
-    Scaffold { paddingValues ->
+    LaunchedEffect(state.count) {
+        if(state.count < 0){
+            snackbarHostState.showSnackbar(
+                message = "숫자가 0보다 작아졌어요",
+                duration = SnackbarDuration.Short
+            )
+        }
+    }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { paddingValues ->
         when {
             state.isLoading -> Progress(paddingValues = paddingValues)
             state.isError -> NetworkError { onEventSent(FirstContract.Event.Retry) }
