@@ -18,7 +18,7 @@ class FirstViewModel: BaseViewModel<FirstContract.Event, FirstContract.State, Fi
 
     override fun handleEvents(event: FirstContract.Event) {
         when(event) {
-            is FirstContract.Event.Action -> setEffect { FirstContract.Effect.Navigation.ToSecond(event.num) }
+            is FirstContract.Event.NavigateAction -> setEffect { FirstContract.Effect.Navigation.ToSecond(event.num) }
             is FirstContract.Event.Retry -> {}
             is FirstContract.Event.OnIncreaseCount -> { increaseCount() }
             is FirstContract.Event.OnDecreaseCount -> { decreaseCount() }

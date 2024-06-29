@@ -8,7 +8,7 @@ class FirstContract {
 
     sealed class Event: ViewEvent {
         data object Retry : Event()
-        data class Action(val num: String): Event()
+        data class NavigateAction(val num: String): Event()
         data object OnIncreaseCount: Event()
         data object OnDecreaseCount: Event()
     }

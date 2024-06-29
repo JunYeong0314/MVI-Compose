@@ -48,7 +48,7 @@ fun FirstScreen(
             else -> FirstContent(
                 uiState = state,
                 paddingValues = paddingValues,
-                onSecClick = { onEventSent(FirstContract.Event.Action(it)) },
+                onSecClick = { onEventSent(FirstContract.Event.NavigateAction(it)) },
                 onEventSent = onEventSent
             )
         }
